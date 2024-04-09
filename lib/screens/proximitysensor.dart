@@ -65,6 +65,9 @@ class _ProximityPageState extends State<ProximityPage> {
           'Proximity Page',
           style: TextStyle(color: theme.primaryColor),
         ),
+        iconTheme: IconThemeData(
+          color: theme.primaryColor, // This sets the back arrow color
+        ),
       ),
       body: Container(
         color: theme.primaryColor,
@@ -77,7 +80,7 @@ class _ProximityPageState extends State<ProximityPage> {
                 style: TextStyle(color: theme.hintColor),
               ),
               Lottie.asset(
-                'lib/asserts/Animation - 1712058538433.json',
+                'lib/assets/Animation - 1712058538433.json',
                 width: 400,
                 height: 400,
               ),

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:provider/provider.dart';
 import 'package:sensormobileapplication/components/ThemeProvider.dart';
+import 'package:sensormobileapplication/screens/StepCounter.dart';
+import 'package:sensormobileapplication/screens/compass.dart';
 import 'package:sensormobileapplication/screens/maps.dart';
 import 'package:sensormobileapplication/screens/proximitysensor.dart';
-
 
 void main() {
   runApp(
@@ -38,23 +40,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _selectedIndex = 0;
-
-  static List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Home Page',
-      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-    ),
-    MapPage(),
-    ProximityPage(), // Add ProximityPage to the widget options
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -69,39 +54,56 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: Text('Welcome',style: TextStyle(color: theme.hintColor),),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.map),
-            label: 'Map',
-          ),
-          BottomNavigationBarItem( // Add BottomNavigationBarItem for ProximityPage
-            icon: Icon(Icons.sensors),
-            label: 'Proximity',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: theme.primaryColor,
-        unselectedItemColor: theme.primaryColor,
-        backgroundColor: theme.hintColor,
-        onTap: _onItemTapped,
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          themeNotifier.toggleTheme();
-        },
-        backgroundColor: theme.hintColor,
-        child: Icon(
-          Icons.color_lens,
-          color: theme.primaryColor,
+      floatingActionButton: _buildSpeedDial(context, themeNotifier, theme),
+    );
+  }
+
+  Widget _buildSpeedDial(
+      BuildContext context, ThemeNotifier themeNotifier, ThemeData theme) {
+    return SpeedDial(
+      icon: Icons.menu,
+      activeIcon: Icons.close,
+      backgroundColor: theme.hintColor,
+      foregroundColor: theme.primaryColor,
+      overlayColor: Colors.transparent,
+      children: [
+        SpeedDialChild(
+          child: Icon(Icons.palette, color: theme.primaryColor),
+          backgroundColor: theme.hintColor,
+          label: 'Toggle Theme',
+          onTap: () => themeNotifier.toggleTheme(),
         ),
-      ),
+        SpeedDialChild(
+          child: Icon(Icons.map, color: theme.primaryColor),
+          backgroundColor: theme.hintColor,
+          label: 'Maps',
+          onTap: () => Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => MapPage())),
+        ),
+        SpeedDialChild(
+          child: Icon(Icons.sensor_door, color: theme.primaryColor),
+          backgroundColor: theme.hintColor,
+          label: 'Proximity Sensor',
+          onTap: () => Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => ProximityPage())),
+        ),
+        SpeedDialChild(
+          child: Icon(Icons.run_circle_outlined, color: theme.primaryColor),
+          backgroundColor: theme.hintColor,
+          label: 'Step Counter',
+          onTap: () => Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => StepCounterPage())),
+        ),
+        SpeedDialChild(
+          child: Icon(Icons.compass_calibration_outlined, color: theme.primaryColor),
+          backgroundColor: theme.hintColor,
+          label: 'Compass',
+          onTap: () => Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => CompassPage())),
+        ),
+      ],
     );
   }
 }

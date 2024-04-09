@@ -42,13 +42,16 @@ class _MapPageState extends State<MapPage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Your Location', // Add this line to set the title
           style: TextStyle(color: Colors.black),
         ),
         backgroundColor: Theme.of(context).primaryColor,
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(
+          color: theme.primaryColor, // This sets the back arrow color
+        ),
       ),
       body: _currentP == null
           ? const Center(

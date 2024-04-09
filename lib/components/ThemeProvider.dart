@@ -35,28 +35,29 @@ class ThemeNotifier with ChangeNotifier {
   }
 }
 
-// Define the Yellow theme
 ThemeData yellowTheme = ThemeData(
   primaryColor: Colors.yellow,
   hintColor: Colors.black,
   scaffoldBackgroundColor: Colors.yellow,
-  textTheme: TextTheme(
-    bodyText1: TextStyle(color: Colors.white),
-    bodyText2: TextStyle(color: Colors.black),
-    // Define other text styles as needed
+  // Define other text styles as needed
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    backgroundColor: Colors.yellow,
+    selectedItemColor: Colors.black,
+    unselectedItemColor: Colors.white, // Or any other color
   ),
   // Add other customizations as needed
 );
 
-// Define the Black theme
 ThemeData blackTheme = ThemeData(
   primaryColor: Colors.black,
   hintColor: Colors.yellow,
   scaffoldBackgroundColor: Colors.black,
-  textTheme: TextTheme(
-    bodyText1: TextStyle(color: Colors.white),
-    bodyText2: TextStyle(color: Colors.black),
-    // Define other text styles as needed
+  // Define other text styles as needed
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    backgroundColor: Colors.black,
+    selectedItemColor: Colors.yellow,
+    unselectedItemColor: Colors.white, // Or any other color
   ),
   // Add other customizations as needed
 );
+
