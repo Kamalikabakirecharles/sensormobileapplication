@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:sensors_plus/sensors_plus.dart';
+import 'dart:math' as math;
 
 class CompassPage extends StatefulWidget {
   @override
@@ -48,7 +48,7 @@ class _CompassPageState extends State<CompassPage> {
           style: TextStyle(color: theme.primaryColor),
         ),
         iconTheme: IconThemeData(
-          color: theme.primaryColor, // This sets the back arrow color
+          color: theme.primaryColor,
         ),
       ),
       body: Center(
@@ -57,7 +57,7 @@ class _CompassPageState extends State<CompassPage> {
           children: [
             CustomPaint(
               size: Size(300, 300),
-              painter: CompassPainter(heading: _heading),
+              painter: CompassPainter(heading: _heading, themeColor: theme.hintColor), // Pass theme color
               child: Container(
                 width: 200,
                 height: 200,
@@ -74,7 +74,7 @@ class _CompassPageState extends State<CompassPage> {
             SizedBox(height: 90),
             Text(
               'Heading: ${(_heading * 180 / math.pi).toStringAsFixed(2)}°',
-              style: TextStyle(fontSize: 24),
+              style: TextStyle(fontSize: 24, color: theme.hintColor),
             ),
           ],
         ),
@@ -85,8 +85,9 @@ class _CompassPageState extends State<CompassPage> {
 
 class CompassPainter extends CustomPainter {
   final double heading;
+  final Color themeColor;
 
-  CompassPainter({required this.heading});
+  CompassPainter({required this.heading, required this.themeColor});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -101,11 +102,11 @@ class CompassPainter extends CustomPainter {
     final double textOffset = 40.0;
 
     // Define text style for normal points
-    final TextStyle textStyle = TextStyle(color: Colors.black, fontSize: 20.0);
+    final TextStyle textStyle = TextStyle(color: themeColor, fontSize: 20.0); // Modified color
 
     // Define text style for the bold point
     final TextStyle boldTextStyle = TextStyle(
-        color: Colors.red, fontSize: 25.0, fontWeight: FontWeight.bold);
+        color: Colors.red, fontSize: 25.0, fontWeight: FontWeight.bold); // Modified color
 
     // Determine the sector size
     final double sectorSize = 2 * math.pi / points.length;
@@ -132,7 +133,7 @@ class CompassPainter extends CustomPainter {
       final double lineY = centerY - math.sin(angle) * radius;
 
       canvas.drawLine(Offset(centerX, centerY), Offset(lineX, lineY),
-          Paint()..color = Colors.black);
+          Paint()..color = themeColor); // Modified color
 
       // Determine if the point should be bold
       bool isBold = arrowSectorIndex == i;

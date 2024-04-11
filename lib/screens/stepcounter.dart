@@ -60,14 +60,14 @@ class _StepCounterPageState extends State<StepCounterPage> {
             ),
             Text(
               'Step Count:',
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(fontSize: 20,color: theme.hintColor),
             ),
             Text(
               '$_stepCount',
               style: TextStyle(
                   fontSize: 40,
                   fontWeight: FontWeight.bold,
-                  color: theme.primaryColor),
+                  color: theme.hintColor),
             ),
           ],
         ),
