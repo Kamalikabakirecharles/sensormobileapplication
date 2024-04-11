@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:sensormobileapplication/components/ThemeProvider.dart';
 import 'package:sensormobileapplication/screens/StepCounter.dart';
 import 'package:sensormobileapplication/screens/compass.dart';
+import 'package:sensormobileapplication/screens/lightsensor.dart';
 import 'package:sensormobileapplication/screens/maps.dart';
 import 'package:sensormobileapplication/screens/proximitysensor.dart';
 
@@ -54,7 +55,10 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       body: Center(
-        child: Text('Welcome',style: TextStyle(color: theme.hintColor),),
+        child: Text(
+          'Welcome',
+          style: TextStyle(color: theme.hintColor),
+        ),
       ),
       floatingActionButton: _buildSpeedDial(context, themeNotifier, theme),
     );
@@ -97,11 +101,19 @@ class _MyHomePageState extends State<MyHomePage> {
               .push(MaterialPageRoute(builder: (context) => StepCounterPage())),
         ),
         SpeedDialChild(
-          child: Icon(Icons.compass_calibration_outlined, color: theme.primaryColor),
+          child: Icon(Icons.compass_calibration_outlined,
+              color: theme.primaryColor),
           backgroundColor: theme.hintColor,
           label: 'Compass',
           onTap: () => Navigator.of(context)
               .push(MaterialPageRoute(builder: (context) => CompassPage())),
+        ),
+        SpeedDialChild(
+          child: Icon(Icons.lightbulb_rounded, color: theme.primaryColor),
+          backgroundColor: theme.hintColor,
+          label: 'Light Sensor',
+          onTap: () => Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => LightSensorPage())),
         ),
       ],
     );

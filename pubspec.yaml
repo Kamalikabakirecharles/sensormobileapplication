@@ -45,6 +45,7 @@ dependencies:
   proximity_sensor: ^1.0.4
   sensors_plus: ^5.0.0  
   flutter_speed_dial: ^7.0.0
+  light_sensor: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +76,7 @@ flutter:
   - lib/assets/Animation - 1712058538433.json
   - lib/assets/Animation - 1712341175314.json
   - lib/assets/compass-arrow-navigation.png
+  - lib/assets/bulb.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

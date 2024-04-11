@@ -15,13 +15,11 @@ class _StepCounterPageState extends State<StepCounterPage> {
   @override
   void initState() {
     super.initState();
-    // Initialize the accelerometer sensor subscription
     _startListeningToAccelerometer();
   }
 
   @override
   void dispose() {
-    // Cancel the subscription when the widget is disposed
     _accelerometerSubscription.cancel();
     super.dispose();
   }
@@ -29,7 +27,6 @@ class _StepCounterPageState extends State<StepCounterPage> {
   void _startListeningToAccelerometer() {
     _accelerometerSubscription =
         accelerometerEvents.listen((AccelerometerEvent event) {
-      // Check if the phone is moving vertically (considering gravity)
       if (event.z.abs() > 10.0) {
         setState(() {
           _stepCount++;
@@ -49,7 +46,7 @@ class _StepCounterPageState extends State<StepCounterPage> {
           style: TextStyle(color: theme.primaryColor),
         ),
         iconTheme: IconThemeData(
-          color: theme.primaryColor, // This sets the back arrow color
+          color: theme.primaryColor,
         ),
       ),
       body: Center(
@@ -67,7 +64,10 @@ class _StepCounterPageState extends State<StepCounterPage> {
             ),
             Text(
               '$_stepCount',
-              style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                  color: theme.primaryColor),
             ),
           ],
         ),
