@@ -71,7 +71,7 @@ class _CompassPageState extends State<CompassPage> {
                 ),
               ),
             ),
-            SizedBox(height: 90),
+            SizedBox(height: 250),
             Text(
               'Heading: ${(_heading * 180 / math.pi).toStringAsFixed(2)}°',
               style: TextStyle(fontSize: 24, color: theme.hintColor),
@@ -102,11 +102,11 @@ class CompassPainter extends CustomPainter {
     final double textOffset = 40.0;
 
     // Define text style for normal points
-    final TextStyle textStyle = TextStyle(color: themeColor, fontSize: 20.0); // Modified color
+    final TextStyle textStyle = TextStyle(color: themeColor, fontSize: 20.0, fontWeight: FontWeight.bold); // Modified color
 
     // Define text style for the bold point
     final TextStyle boldTextStyle = TextStyle(
-        color: Colors.red, fontSize: 25.0, fontWeight: FontWeight.bold); // Modified color
+        color: Colors.red, fontSize: 35.0, fontWeight: FontWeight.bold); // Modified color
 
     // Determine the sector size
     final double sectorSize = 2 * math.pi / points.length;

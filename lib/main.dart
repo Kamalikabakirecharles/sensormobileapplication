@@ -7,15 +7,39 @@ import 'package:sensormobileapplication/screens/compass.dart';
 import 'package:sensormobileapplication/screens/lightsensor.dart';
 import 'package:sensormobileapplication/screens/maps.dart';
 import 'package:sensormobileapplication/screens/proximitysensor.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-void main() {
+
+void main() async {
   runApp(
     ChangeNotifierProvider(
       create: (_) => ThemeNotifier(),
       child: const MyApp(),
     ),
   );
+  await initNotifications();
 }
+
+FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+
+Future<void> initNotifications() async {
+  const AndroidInitializationSettings initializationSettingsAndroid =
+      AndroidInitializationSettings('@mipmap/ic_launcher');
+
+  final InitializationSettings initializationSettings = InitializationSettings(
+    android: initializationSettingsAndroid,
+  );
+
+  await flutterLocalNotificationsPlugin.initialize(
+    initializationSettings,
+    onDidReceiveNotificationResponse: (NotificationResponse notificationResponse) async {
+      // Handle notification tap
+    },
+  );
+}
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
