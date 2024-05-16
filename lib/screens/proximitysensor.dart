@@ -9,14 +9,13 @@ void main() {
   runApp(MaterialApp(
     home: Scaffold(
       body: MaterialApp(
-        home: ProximityPage(key: UniqueKey()), // Wrap with MaterialApp
+        home: ProximityPage(key: UniqueKey()),
       ),
     ),
   ));
 }
 
 class ProximityPage extends StatefulWidget {
-  // Add a key to the ProximityPage widget
   const ProximityPage({Key? key}) : super(key: key);
 
   @override
@@ -30,13 +29,11 @@ class _ProximityPageState extends State<ProximityPage> {
   @override
   void initState() {
     super.initState();
-    // Initialize the proximity sensor subscription
     listenSensor();
   }
 
   @override
   void dispose() {
-    // Cancel the subscription when the widget is disposed
     _proximitySubscription.cancel();
     super.dispose();
   }
@@ -66,7 +63,7 @@ class _ProximityPageState extends State<ProximityPage> {
           style: TextStyle(color: theme.primaryColor),
         ),
         iconTheme: IconThemeData(
-          color: theme.primaryColor, // This sets the back arrow color
+          color: theme.primaryColor,
         ),
       ),
       body: Container(

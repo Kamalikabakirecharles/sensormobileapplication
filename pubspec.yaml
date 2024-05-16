@@ -47,6 +47,7 @@ dependencies:
   flutter_speed_dial: ^7.0.0
   light_sensor: ^3.0.0
   flutter_local_notifications: ^17.1.2
+  charts_flutter_new: ^0.12.0
 
 dev_dependencies:
   flutter_test:
@@ -76,6 +77,9 @@ flutter:
   #   - images/a_dot_ham.jpeg
   - lib/assets/Animation - 1712058538433.json
   - lib/assets/Animation - 1712341175314.json
+  - lib/assets/Animation - 1715439026773.json
+  - lib/assets/Animation - 1715610777778.json
+  - lib/assets/Animation - 1715611200689.json
   - lib/assets/compass-arrow-navigation.png
   - lib/assets/bulb.png
 

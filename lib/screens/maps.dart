@@ -19,8 +19,7 @@ class _MapPageState extends State<MapPage> {
   Location _locationController = Location();
   final Completer<GoogleMapController> _mapController =
       Completer<GoogleMapController>();
-  LatLng _kigaliCenter =
-      LatLng(-1.9441, 30.0619); // Coordinates for Kigali center
+  LatLng _kigaliCenter = LatLng(-1.9441, 30.0619);
   static const LatLng _pGooglePlex = LatLng(37.4223, -122.0848);
   static const LatLng _pApplePark = LatLng(37.3346, -122.0090);
   LatLng? _currentP;
@@ -45,7 +44,7 @@ class _MapPageState extends State<MapPage> {
 
   @override
   void dispose() {
-    _locationSubscription?.cancel(); // Cancel location updates subscription
+    _locationSubscription?.cancel();
     super.dispose();
   }
 
@@ -99,8 +98,8 @@ class _MapPageState extends State<MapPage> {
     if (!_notificationSentInSide) {
       const AndroidNotificationDetails androidPlatformChannelSpecifics =
           AndroidNotificationDetails(
-        'Map_channel', // Change this to match your channel ID
-        'Map Notifications', // Replace with your own channel name
+        'Map_channel',
+        'Map Notifications',
         importance: Importance.max,
         priority: Priority.high,
       );
@@ -122,8 +121,8 @@ class _MapPageState extends State<MapPage> {
     if (!_notificationSentOutSide) {
       const AndroidNotificationDetails androidPlatformChannelSpecifics =
           AndroidNotificationDetails(
-        'Map_channel', // Change this to match your channel ID
-        'Map Notifications', // Replace with your own channel name
+        'Map_channel',
+        'Map Notifications',
         importance: Importance.max,
         priority: Priority.high,
       );
@@ -142,15 +141,12 @@ class _MapPageState extends State<MapPage> {
   }
 
   void _createGeofence() {
-    // Define the boundaries for the larger geofence around Kigali
     List<LatLng> kigaliBoundaries = [
       LatLng(-1.9740, 30.0274), // Northwest corner
       LatLng(-1.9740, 30.1300), // Northeast corner
       LatLng(-1.8980, 30.1300), // Southeast corner
       LatLng(-1.8980, 30.0274), // Southwest corner
     ];
-
-    // Create a polygon to represent the geofence boundaries
     PolygonId polygonId = PolygonId('kigali');
     Polygon polygon = Polygon(
       polygonId: polygonId,
@@ -159,20 +155,15 @@ class _MapPageState extends State<MapPage> {
       strokeColor: Colors.blue,
       fillColor: Colors.blue.withOpacity(0.3),
     );
-
-    // Add the polygon to the map
     setState(() {
       _polygons[polygonId] = polygon;
     });
-
-    // Start location updates subscription to monitor device's location
     _startLocationUpdates();
   }
 
   void _startLocationUpdates() async {
     _locationSubscription = _locationController.onLocationChanged
         .listen((LocationData currentLocation) {
-      // Check if the device's location is inside or outside the geofence
       bool insideGeofence = _isLocationInsideGeofence(
           currentLocation.latitude!, currentLocation.longitude!);
 
@@ -189,7 +180,6 @@ class _MapPageState extends State<MapPage> {
   }
 
   bool _isLocationInsideGeofence(double latitude, double longitude) {
-    // Check if the provided location is inside the geofence boundaries
     bool isInside = false;
     List<LatLng> kigaliBoundaries = [
       LatLng(-1.9740, 30.0274),
@@ -198,7 +188,6 @@ class _MapPageState extends State<MapPage> {
       LatLng(-1.8980, 30.0274),
     ];
 
-    // Algorithm to determine if a point is inside a polygon
     int i, j = kigaliBoundaries.length - 1;
     for (i = 0; i < kigaliBoundaries.length; i++) {
       if ((kigaliBoundaries[i].latitude < latitude &&
@@ -260,10 +249,8 @@ class _MapPageState extends State<MapPage> {
         LatLng newLocation =
             LatLng(currentLocation.latitude!, currentLocation.longitude!);
 
-        // Update the marker to the new location
         updateMarkerAndCircle(newLocation);
 
-        // Optionally, keep track of the path by adding to your polyline
         addLocationToPolyline(newLocation);
 
         _cameraToPosition(newLocation);
@@ -274,13 +261,11 @@ class _MapPageState extends State<MapPage> {
   void updateMarkerAndCircle(LatLng newLocation) {
     setState(() {
       _currentP = newLocation;
-      // Update your marker or create a new one if needed
     });
   }
 
   void addLocationToPolyline(LatLng newLocation) {
     setState(() {
-      // Check if polyline exists, if not create one
       if (polylines.containsKey(PolylineId("path"))) {
         final polyline = polylines[PolylineId("path")]!;
         final updatedPoints = List<LatLng>.from(polyline.points)
@@ -288,7 +273,6 @@ class _MapPageState extends State<MapPage> {
         polylines[PolylineId("path")] =
             polyline.copyWith(pointsParam: updatedPoints);
       } else {
-        // Create new polyline if it doesn't exist
         polylines[PolylineId("path")] = Polyline(
           polylineId: PolylineId("path"),
           color: Colors.blue,
