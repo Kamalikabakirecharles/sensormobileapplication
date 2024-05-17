@@ -5,6 +5,10 @@ This is a sensor application with a theme color of yellow and black. The applica
 ## Main Page
 The main page of the application allows navigation to different sensor functionalities.
 
+
+https://github.com/Kamalikabakirecharles/sensormobileapplication/assets/144225495/d394090d-b9ed-4876-aed7-5d604d27210d
+
+
 <img src="https://github.com/Kamalikabakirecharles/sensormobileapplication/assets/144225495/c233c152-e723-4a54-9b7f-fb06534f52d5" width="150">
 <img src="https://github.com/Kamalikabakirecharles/sensormobileapplication/assets/144225495/0cbe1da9-785c-494a-b5e8-bde37cca1d82" width="150">
 <img src="https://github.com/Kamalikabakirecharles/sensormobileapplication/assets/144225495/f7de03f0-1ed4-4ac0-8b7b-80b763692dd5" width="150">
